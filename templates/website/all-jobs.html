@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block content %}
+
+<div class="row mt-4">
+    <!-- Job listings go here -->
+    {% if jobs %}
+    {% for job in jobs %}
+    <div class="col-md-4">
+      <div class="card job-card">
+        <div class="card-body">
+          <h5 class="card-title">{{ job.title }}</h5>
+          <p class="card-text">Location: {{ job.state }} </p>
+          <p class="card-text">Basic Salary: ${{ job.salary|intcomma }} </p>
+          <p class="card-text">Posted By : {{ job.company }} </p>
+          <a href="{% url 'job-details' job.pk %}" class="btn btn-primary">View Details</a>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Created: {{job.timestamp|naturaltime}} </small>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <!-- Repeat the job listing card for each job -->
+  </div>
+
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+
+<!-- create_job_form.html -->
+
+<div class="container mt-4">
+    <div class="card">
+      <div class="card-header">
+        <h2>Create Job Ads</h2>
+      </div>
+      <div class="card-body">
+        <form method="POST">
+          {% csrf_token %}
+          
+          <!-- Title -->
+          <div class="mb-3">
+            <label for="title" class="form-label">Job Title:</label>
+            {% render_field form.title class='form-control' %}
+          </div>
+          
+          <!-- Location -->
+          <div class="mb-3">
+            <label for="location" class="form-label">City:</label>
+            {% render_field form.city class='form-control' %}
+          </div>
+
+          <div class="mb-3">
+            <label for="location" class="form-label">State:</label>
+            {% render_field form.state class='form-control' %}
+          </div>
+          <!-- Salary -->
+          <div class="mb-3">
+            <label for="salary" class="form-label">Salary:</label>
+            {% render_field form.salary class='form-control' %}
+          </div>
+          
+          <!-- Requirements -->
+          <div class="mb-3">
+            <label for="requirements" class="form-label">Requirements:</label>
+            {% render_field form.requirements|attr:"rows:2" class="form-control" %}
+          </div>
+          
+          
+          <!-- Ideal Candidate -->
+          <div class="mb-3">
+            <label for="ideal_candidate" class="form-label">Ideal Candidate:</label>
+            {% render_field form.ideal_candidate|attr:"rows:2" class='form-control' %}
+          </div>
+          
+
+          <div class="mb-3">
+            <label for="location" class="form-label">Industry:</label>
+            {% render_field form.industry class='form-control' %}
+          </div>
+
+          <div class="mb-3">
+            <label for="location" class="form-label">Job Type:</label>
+            {% render_field form.job_type class='form-control' %}
+          </div>
+
+          <!-- Is Available -->
+          <div class="mb-3 form-check">
+            {% render_field form.is_available class='form-check-input' %}
+            <label class="form-check-label" for="is_available">Is This Job Available?</label>
+          </div>
+          
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary">Create Job</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+
+{% endblock content %}
+
+

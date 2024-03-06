@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  {% if request.user.is_applicant %}
+    {% if not request.user.has_resume %}
+          <div class="alert alert-danger" role="alert">
+            You are seeing this because you haven't created a Resume. Create now <a href="{% url 'update-resume' %}">Here</a>
+          </div>
+    {% endif %}
+      <section>
+      <p>
+        <b>Applicant</b> Lorem ipsum dolor sit amet consectetur adipisicing elit. Error cupiditate cumque blanditiis officiis nostrum nesciunt corporis, facilis vero nisi sint nulla vel necessitatibus, ducimus quia explicabo possimus magnam enim beatae atque! Ullam aspernatur veniam voluptate minus suscipit mollitia quod architecto commodi fuga dignissimos molestiae, inventore, neque dolorem perspiciatis illum impedit.
+      </p>
+    </section>
+  {% elif request.user.is_recruiter %}
+    {% if not request.user.has_company %}
+          <div class="alert alert-danger" role="alert">
+            You are seeing this because you haven't created a Company. Create now <a href="{% url 'update-company' %}">Here</a>
+          </div>
+    {% endif %}
+    <section>
+      <p>
+        <b>Recruiter</b> Lorem ipsum dolor sit amet consectetur adipisicing elit. Error cupiditate cumque blanditiis officiis nostrum nesciunt corporis, facilis vero nisi sint nulla vel necessitatibus, ducimus quia explicabo possimus magnam enim beatae atque! Ullam aspernatur veniam voluptate minus suscipit mollitia quod architecto commodi fuga dignissimos molestiae, inventore, neque dolorem perspiciatis illum impedit.
+      </p>
+    </section>
+  {% endif %}
+{% endblock %}

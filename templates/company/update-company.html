@@ -1,0 +1,39 @@
+{% extends 'base.html' %} 
+{% load widget_tweaks %} 
+
+{% block content %}
+
+<div class="container mt-5">
+  <h2 class="mb-4">Create A Company </h2>
+  <form method="post">
+    {% csrf_token %}
+
+    <!-- Company Name -->
+    <div class="form-group">
+      <label for="companyName">Company Name:</label>
+      {% render_field form.company_name class='form-control' %}
+    </div>
+
+    <!-- Established Date -->
+    <div class="form-group">
+      <label for="establishedDate">Established Date:</label>
+      {% render_field form.est_date class='form-control' %}
+    </div>
+
+    <!-- Location -->
+    <div class="form-group">
+      <label for="location">Location:</label>
+      {% render_field form.city class='form-control' %}
+    </div>
+
+    <!-- state -->
+    <div class="form-group">
+      <label for="state">State:</label>
+      {% render_field form.state class='form-control' %}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+  </form>
+</div>
+
+{% endblock content %}

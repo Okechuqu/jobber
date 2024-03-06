@@ -1,0 +1,117 @@
+{% extends 'base.html' %} {% load humanize %} {% block content %}
+
+<style>
+   {
+    background-color: #f8f9fa;
+  }
+
+  .job-details-container {
+    margin: 50px;
+  }
+
+  .back-button {
+    margin-top: 20px;
+  }
+
+  .job-details-section {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .apply-button {
+    margin-top: 30px;
+  }
+
+  .job-title {
+    color: #0056b3;
+  }
+
+  .details-heading {
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-top: 20px;
+  }
+
+  .icon {
+    font-size: 24px;
+    margin-right: 10px;
+  }
+
+  .requirements-list {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .requirements-list-item::before {
+    content: "\2022";
+    color: #0056b3;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }
+
+  .apply-button a {
+    background-color: #28a745;
+    color: #fff;
+    transition: background-color 0.3s;
+  }
+
+  .apply-button a:hover {
+    background-color: #218838;
+  }
+</style>
+
+<div class="container job-details-container">
+  <h1 class="mb-4 text-center">Job Details</h1>
+
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="job-details-section">
+        <h2 class="job-title">{{ job.title }}</h2>
+        <p class="text-muted">
+          IT | Location: {{ job.location }} | Salary: ${{ job.salary|intcomma }}
+        </p>
+        <hr />
+
+        <div class="details-heading">
+          <h4><i class="bi bi-file-earmark-text icon"></i>Requirements:</h4>
+        </div>
+        <ul class="requirements-list">
+          {{ job.requirements }}
+        </ul>
+
+        <div class="details-heading">
+          <h4><i class="bi bi-person icon"></i>Ideal Candidate:</h4>
+        </div>
+        <p>{{ job.ideal_candidate }}</p>
+
+        <div class="details-heading">
+          <h4><i class="bi bi-check2 icon"></i>Is Available:</h4>
+        </div>
+        <p>{% if job.is_available %} Yes {% else %} No {% endif %}</p>
+
+        <div class="apply-button text-center">
+          {% if has_applied == False %}
+          <a href="{% url 'apply-job' job.pk %}" class="btn btn-success"
+            >Apply Now</a
+          >
+          {% else %}
+          <p><span class="text-danger">You have applied Already </span></p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-8 offset-md-2 text-center back-button">
+      <a href="{% url 'all-jobs' %}" class="btn btn-secondary"
+        >Back to Job Listings</a
+      >
+    </div>
+  </div>
+</div>
+
+{% endblock %}
